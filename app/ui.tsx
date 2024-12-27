@@ -1,6 +1,7 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { supabase } from "@/utils/supabase";
 import Header from "@/components/header";
 import EmptyNote from "@/components/empty-note";
 import NewNote from "@/components/new-note";
@@ -23,6 +24,10 @@ const notes = [
 function UI() {
   const [activeNoteId, setActiveNoteId] = useState(null);
   const [isCreating, setIsCreating] = useState(false);
+
+  useEffect(() => {
+    supabase.from("note").select("*").then(console.log);
+  }, []);
 
   return (
     <main className="w-full h-screen flex flex-col">
